@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 NEON WEAR - مستقبل الموضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================================
+           🚀 إعدادات عامة - الطراز الصاروخي
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0a0a12;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00d4ff, #ff2d78);
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ============================================================
+           🚀 شاشة التحميل (Loading Screen)
+           ============================================================ */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0a0a12;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #preloader .rocket-icon {
+            font-size: 70px;
+            color: #00d4ff;
+            animation: rocketLaunch 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes rocketLaunch {
+            0% { transform: translateY(0) rotate(-10deg); }
+            100% { transform: translateY(-40px) rotate(10deg); opacity: 0.6; }
+        }
+
+        #preloader .loader-text {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
+        }
+
+        #preloader .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: #1a1a2e;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        #preloader .loader-bar span {
+            display: block;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #ff2d78);
+            animation: loadBar 2.2s ease forwards;
+        }
+
+        @keyframes loadBar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* ============================================================
+           🚀 خلفية الجزيئات (Particles Background)
+           ============================================================ */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+           🚀 القائمة العلوية - شفافة مع تأثير نيون
+           ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 18, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 12px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            text-decoration: none;
+            background: linear-gradient(135deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '⚡';
+            font-size: 20px;
+            -webkit-text-fill-color: initial;
+            margin-right: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #ff2d78);
+            transition: width 0.3s;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links .cart-link {
+            font-size: 18px;
+            position: relative;
+        }
+
+        .nav-links .cart-link .badge {
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            background: #ff2d78;
+            color: #fff;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(255, 45, 120, 0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ============================================================
+           🚀 قسم الترحيب (Hero) - تصميم صاروخي
+           ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* خلفية الهيرو - شبكة ثلاثية الأبعاد */
+        .hero-bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(800px) rotateX(5deg) translateY(0); }
+            100% { transform: perspective(800px) rotateX(5deg) translateY(60px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            padding: 6px 25px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .hero-content h1 {
+            font-size: 70px;
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h1 .outline-text {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 42px;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            color: #0a0a12;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff2d78;
+            box-shadow: 0 0 30px rgba(255, 45, 120, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #ff2d78, #cc0066);
+            color: #ffffff;
+            box-shadow: 0 0 40px rgba(255, 45, 120, 0.3);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 60px rgba(255, 45, 120, 0.5);
+        }
+
+        /* ============================================================
+           🚀 شريط السرعة (Energy Scroll Bar)
+           ============================================================ */
+        .scroll-energy {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            width: 4px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .scroll-energy .fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to top, #ff2d78, #00d4ff);
+            border-radius: 10px;
+            transition: height 0.1s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ============================================================
+           🚀 العناوين العامة - بنمط صاروخي
+           ============================================================ */
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title .subtitle {
+            color: #00d4ff;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            opacity: 0.7;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2 .highlight {
+            background: linear-gradient(135deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 17px;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           🚀 قسم المنتجات - بطاقات مائلة (صاروخية)
+           ============================================================ */
+        .products {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-12px);
+            border-color: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.05);
+        }
+
+        .product-card .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 320px;
+        }
+
+        .product-card .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .product-card:hover .image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .product-card .image-wrapper .badge-sale {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff2d78;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(255, 45, 120, 0.4);
+        }
+
+        .product-card .image-wrapper .badge-new {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #00d4ff;
+            color: #0a0a12;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .product-card .info {
+            padding: 22px 25px 25px;
+        }
+
+        .product-card .info .category {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .product-card .info h4 {
+            font-size: 19px;
+            font-weight: 700;
+            margin: 5px 0 8px;
+            color: #ffffff;
+        }
+
+        .product-card .info .price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .product-card .info .price .current {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-card .info .price .old {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: line-through;
+        }
+
+        .product-card .info .btn-add {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .product-card .info .btn-add:hover {
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            color: #0a0a12;
+            border-color: transparent;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        /* ============================================================
+           🚀 قسم المميزات - أيقونات نيون
+           ============================================================ */
+        .features {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: 0.4s;
+        }
+
+        .feature-item:hover {
+            border-color: rgba(0, 212, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-item .icon {
+            font-size: 40px;
+            color: #00d4ff;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-item h5 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+            margin-top: 5px;
+        }
+
+        /* ============================================================
+           🚀 آراء العملاء
+           ============================================================ */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(0, 212, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card .stars {
+            color: #ff2d78;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .testimonial-card blockquote {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .testimonial-card .client {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .testimonial-card .client img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00d4ff;
+        }
+
+        .testimonial-card .client .name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .testimonial-card .client .role {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============================================================
+           🚀 التواصل
+           ============================================================ */
+        .contact {
+            padding: 100px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info .info-item i {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 212, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+            font-size: 17px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .contact-info .info-item span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: 'Tajawal', sans-serif;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.04);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.05);
+        }
+
+        .contact-form textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        /* ============================================================
+           🚀 التذييل
+           ============================================================ */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 18px;
+        }
+
+        .footer .social-links a:hover {
+            border-color: #00d4ff;
+            color: #00d4ff;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .footer p span {
+            background: linear-gradient(135deg, #00d4ff, #ff2d78);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           🚀 استجابة للجوال
+           ============================================================ */
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 75%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 10, 18, 0.98);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: 0.4s;
+                border-left: 1px solid rgba(0, 212, 255, 0.06);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 15px;
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            .product-card .image-wrapper {
+                height: 220px;
+            }
+
+            .scroll-energy {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    🚀 شاشة التحميل
+    ============================================================ -->
+    <div id="preloader">
+        <div class="rocket-icon">🚀</div>
+        <div class="loader-text">إقلاع</div>
+        <div class="loader-bar"><span></span></div>
+    </div>
+
+    <!-- ============================================================
+    🚀 خلفية الجزيئات (Canvas)
+    ============================================================ -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ============================================================
+    🚀 شريط طاقة التمرير
+    ============================================================ -->
+    <div class="scroll-energy" id="scrollEnergy">
+        <div class="fill" id="scrollFill"></div>
+    </div>
+
+    <!-- ============================================================
+    🚀 القائمة العلوية
+    ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">NEON WEAR</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#testimonials">آراء العملاء</a></li>
+                <li><a href="#contact">تواصل</a></li>
+                <li><a href="#" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge">3</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    🚀 قسم الترحيب
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+            <div class="badge">⚡ المستقبل يبدأ هنا</div>
+            <h1>
+                <span class="outline-text">أزياء</span><br>
+                <span class="highlight">صاروخية</span>
+            </h1>
+            <p>تصاميم مستقبلية تجمع بين الجرأة والأناقة. مجموعة حصرية لمن يبحث عن التميز والتفرد.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">استكشف المجموعة</a>
+                <a href="#contact" class="btn btn-secondary">احصل على استشارة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🚀 قسم المنتجات
+    ============================================================ -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <div class="subtitle">المجموعة الصاروخية</div>
+                <h2>أحدث <span class="highlight">الصواريخ</span> الموضة</h2>
+                <p>تشكيلة حصرية من التصاميم التي تسبق الزمن</p>
+            </div>
+            <div class="products-grid">
+                <!-- منتج 1 -->
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600" alt="تيشيرت نيون">
+                        <span class="badge-sale">-30%</span>
+                    </div>
+                    <div class="info">
+                        <div class="category">تيشيرت</div>
+                        <h4>نيون بلاست</h4>
+                        <div class="price">
+                            <span class="current">$49.99</span>
+                            <span class="old">$69.99</span>
+                        </div>
+                        <button class="btn-add"><i class="fas fa-plus-circle"></i> أضف للسلة</button>
+                    </div>
+                </div>
+
+                <!-- منتج 2 -->
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600" alt="جاكيت صاروخي">
+                        <span class="badge-new">جديد</span>
+                    </div>
+                    <div class="info">
+                        <div class="category">جاكيت</div>
+                        <h4>سايبر درون</h4>
+                        <div class="price">
+                            <span class="current">$89.99</span>
+                        </div>
+                        <button class="btn-add"><i class="fas fa-plus-circle"></i> أضف للسلة</button>
+                    </div>
+                </div>
+
+                <!-- منتج 3 -->
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600" alt="حذاء رياضي">
+                        <span class="badge-sale">-20%</span>
+                    </div>
+                    <div class="info">
+                        <div class="category">أحذية</div>
+                        <h4>أوربت رنر</h4>
+                        <div class="price">
+                            <span class="current">$79.99</span>
+                            <span class="old">$99.99</span>
+                        </div>
+                        <button class="btn-add"><i class="fas fa-plus-circle"></i> أضف للسلة</button>
+                    </div>
+                </div>
+
+                <!-- منتج 4 -->
+                <div class="product-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600" alt="بنطلون رياضي">
+                    </div>
+                    <div class="info">
+                        <div class="category">بنطلون</div>
+                        <h4>غرافيتي فلو</h4>
+                        <div class="price">
+                            <span class="current">$59.99</span>
+                        </div>
+                        <button class="btn-add"><i class="fas fa-plus-circle"></i> أضف للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🚀 قسم المميزات
+    ============================================================ -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-bolt"></i></span>
+                    <h5>شحن سريع</h5>
+                    <p>توصيل خلال 24 ساعة</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-shield-alt"></i></span>
+                    <h5>جودة مضمونة</h5>
+                    <p>أفضل الخامات العالمية</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-undo-alt"></i></span>
+                    <h5>استرجاع مجاني</h5>
+                    <p>خلال 30 يوماً</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-gem"></i></span>
+                    <h5>تصاميم حصرية</h5>
+                    <p>لن تجديها في أي مكان آخر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🚀 آراء العملاء
+    ============================================================ -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <div class="subtitle">آراء المسافرين معنا</div>
+                <h2>ماذا يقول <span class="highlight">رواد</span> المستقبل؟</h2>
+                <p>كلمات من عملائنا الذين سبقوا الموضة</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"تصاميم خارقة! جاكيت سايبر درون أخذني لمستوى آخر من الأناقة."</blockquote>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="عميل">
+                        <div>
+                            <div class="name">خالد السيف</div>
+                            <div class="role">مصمم جرافيك</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"الجودة خيالية والتوصيل أسرع من الصاروخ! حبيت كل شيء."</blockquote>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="عميلة">
+                        <div>
+                            <div class="name">نورة الحربي</div>
+                            <div class="role">مدونة موضة</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"أول موقع يخليني أحس إني في فيلم خيال علمي. التصميم والمنتجات كلها جنونية."</blockquote>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="عميل">
+                        <div>
+                            <div class="name">فهد العتيبي</div>
+                            <div class="role">رائد أعمال</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🚀 التواصل
+    ============================================================ -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <div class="subtitle">تواصل مع الفريق</div>
+                <h2>انطلق مع <span class="highlight">NEON WEAR</span></h2>
+                <p>اسأل عن المجموعة الجديدة واحصل على خصم خاص</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>🚀 نحن هنا</h3>
+                    <p>فريقنا جاهز للإجابة عن استفساراتك وتقديم الاستشارات المجانية.</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>دبي - الإمارات العربية المتحدة</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+971 12 345 6789</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@neonwear.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>يومياً: 9 صباحاً - 10 مساءً</span>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <input type="tel" placeholder="رقم الجوال">
+                    <textarea placeholder="اكتب رسالتك هنا..." required></textarea>
+                    <button type="submit" class="btn btn-glow" style="width:100%;">🚀 أطلق استشارتك</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    🚀 التذييل
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>جميع الحقوق محفوظة &copy; 2026 <span>NEON WEAR</span> - 🚀 تصميم صاروخي</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    🚀 جافا سكريبت - كل التأثيرات الصاروخية
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. شاشة التحميل
+        // ============================================================
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hide');
+            }, 2400);
+        });
+
+        // ============================================================
+        // 2. خلفية الجزيئات (Canvas)
+        // ============================================================
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const numParticles = 130;
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 2 + 0.5,
+                color: Math.random() > 0.5 ? '#00d4ff' : '#ff2d78'
+            });
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = 10;
+                ctx.fill();
+            });
+
+            // رسم خطوط بين الجزيئات القريبة
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 212, 255, ${0.08 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        // ============================================================
+        // 3. تأثير القائمة عند التمرير + شريط الطاقة
+        // ============================================================
+        const navbar = document.getElementById('navbar');
+        const scrollFill = document.getElementById('scrollFill');
+
+        window.addEventListener('scroll', function() {
+            // القائمة
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // شريط الطاقة
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollFill.style.height = progress + '%';
+        });
+
+        // ============================================================
+        // 4. قائمة الجوال
+        // ============================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // ============================================================
+        // 5. نموذج التواصل
+        // ============================================================
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🚀 تم إطلاق طلبك بنجاح! سنتواصل معك خلال 24 ساعة.');
+            this.reset();
+        });
+
+        // ============================================================
+        // 6. تأثير المنتجات - زاوية ثلاثية الأبعاد بالفأرة (اختياري)
+        // ============================================================
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                this.style.transform = `
+                    perspective(1000px) 
+                    rotateY(${x * 8}deg) 
+                    rotateX(${y * -8}deg) 
+                    translateY(-10px)
+                `;
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)';
+            });
+        });
+    </script>
+
+</body>
+</html>
